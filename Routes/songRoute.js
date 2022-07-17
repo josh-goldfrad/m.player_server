@@ -1,14 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-const playlistLogic = require('../BL/playlistLogic')
+const songLogic = require('../BL/songLogic')
 
 
 router.post("/", async (req, res) => {
     try {
-        const result = await playlistLogic.playlist(req.body);
-    console.log("playlist req params", req.body)
-    // console.log(result.data);
+        const result = await songLogic.song(req.body);
+    console.log("song req params", req.body)
     res.status(200).send(result)
     
        
@@ -18,7 +17,7 @@ router.post("/", async (req, res) => {
             res.status(error.code).send(error.message)
         }
         else {
-            res.send("error in catch in playlist route")
+            res.send("error in catch in song route")
         }
     }
 });

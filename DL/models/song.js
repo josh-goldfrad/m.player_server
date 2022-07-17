@@ -3,40 +3,40 @@ const mongoose = require("mongoose");
 
 const songSchema = new mongoose.Schema([{
     uploadedAt: {
-        type: string,
+        type: String,
         required: true
     },
     thumbnail: {
         url: {
-            type: string,
+            type: String,
             required: true
         },
         height: { type: Number },
-        id: { type: string },
-        width: { type: nunmber }
+        id: { type: String },
+        width: { type: Number }
     },views:{
         type:Number
     },
     title: {
-        type: string,
+        type: String,
         required: true
     },
     url: {
-        type: string,
+        type: String,
         required: true
     },
     duration_formatted: {
-        type: string,
+        type: String,
         required: true
     },
     channel: {
         name: {
-            type: string,
+            type: String,
             required: true
         }, icon: {
-            type: string,
+            type: String,
         }, id: {
-            type: string,
+            type: String,
         }
     }
 
@@ -46,4 +46,5 @@ const songModel =mongoose.model('song',songSchema)
 
 module.exports=songModel;
 
+console.log("song.js");
 // uploadedAt,url,views, channel.name,duration_formatted,title,thumbnail.url
