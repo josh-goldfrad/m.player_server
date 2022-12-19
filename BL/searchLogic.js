@@ -21,8 +21,7 @@ async function search(data) {
         ).catch(function (error) {
             console.error("error",error);
         });
-        console.log(data);
-        return {page:"searchLogic",result}
+      return {page:"searchLogic",result}
     }
     
     module.exports = { search }

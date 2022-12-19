@@ -4,47 +4,45 @@ const mongoose = require("mongoose");
 const songSchema = new mongoose.Schema([{
     uploadedAt: {
         type: String,
-        required: true
+    //    min:3
     },
     thumbnail: {
         url: {
             type: String,
-            required: true
+            // required: true
         },
         height: { type: Number },
         id: { type: String },
         width: { type: Number }
-    },views:{
-        type:Number
+    }, views: {
+        type: Number
     },
     title: {
         type: String,
-        required: true
+        // required: true
     },
     url: {
         type: String,
-        required: true
+        // required: true
     },
     duration_formatted: {
         type: String,
-        required: true
+        // required: true
     },
     channel: {
         name: {
-            type: String,
-            required: true
+            type: String
         }, icon: {
-            type: String,
+            type: String
         }, id: {
-            type: String,
+            type: String
         }
     }
 
 }])
 
-const songModel =mongoose.model('song',songSchema)
+const songModel = mongoose.model('song', songSchema)
 
-module.exports=songModel;
+module.exports = songModel;
 
-console.log("song.js");
 // uploadedAt,url,views, channel.name,duration_formatted,title,thumbnail.url

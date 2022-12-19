@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 require("./song")
+require("./user")
 const playlistSchema= new mongoose.Schema({
     name:{
         type:String
@@ -15,6 +16,7 @@ const playlistSchema= new mongoose.Schema({
         ref :"user"
     }
 })
+
 
 const playlistModel=mongoose.model("playlist",playlistSchema)
 
