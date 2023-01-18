@@ -4,7 +4,7 @@ const router = express.Router();
 const playlistLogic = require('../BL/playlistLogic')
 
 
-router.post("/addToPlaylist", async (req, res) => {
+router.post("/addToPlaylist" , async (req, res) => {
     console.log("addtoplaylist req", req.body)
     try {
         const result = await playlistLogic.addToPlaylist(req.body);

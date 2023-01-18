@@ -1,4 +1,5 @@
 const express = require("express");
+const { createJToken } = require("../auth/jwt");
 const router = express.Router();
 
 const userLogic = require('../BL/userLogic')
@@ -25,10 +26,13 @@ router.post("/register", async (req ,res) => {
 
 
 router.post("/login", async (req ,res) => {
-    // console.log(req);
+    console.log(req);
+    // console.log(req.headers.authorization);
+
     try {
         const result = await userLogic.login(req.body);
-        console.log("user req login", req.body);
+        console.log("result?.user?._id",result?.user?._id)
+        // const id=result[1]?.user?._id
         res.status(200).send(result)  
     } catch (error) {
         console.log("error", error);
@@ -39,6 +43,11 @@ router.post("/login", async (req ,res) => {
         res.send("error in catch in user route")
         }
     }
+})
+
+router.get('/login-test',async(req,res)=>{
+    console.log("req.headers.authorization",req.headers);
+    res.send("cool cool cool")
 })
 
 module.exports = router
