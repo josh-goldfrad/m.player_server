@@ -20,6 +20,7 @@ async function search(data) {
         options
         ).catch(function (error) {
             console.error("error",error);
+            console.log("the problem is here");
         });
       return {page:"searchLogic",result}
     }

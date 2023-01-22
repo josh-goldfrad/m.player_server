@@ -5,21 +5,17 @@ const songLogic = require("./songLogic")
 
 
 async function addToPlaylist(data) {
-    console.log(data);
 
     const theSongId = await songLogic.addSong(data.song)
-    console.log("11111theSongId", theSongId, "11111");
     const readPl = await playlistController.read(data.playlist)
-    console.log("readPl", readPl);
     //  check if it includes this song already but it dosent return whole pl
     let checkForDuplicate = readPl?.songs?.find((v) => (String(v) == String(theSongId)))
-    console.log(checkForDuplicate);
     if (checkForDuplicate) {
         console.log("exists");
         return false
     } else {
         console.log("not in pl");
-        const addedToPl = await playlistController.updatePlaylist({ _id: data.playlist._id }, { songs: [...readPl.songs, theSongId] })
+        await playlistController.updatePlaylist({ _id: data.playlist._id }, { songs: [...readPl.songs, theSongId] })
     }
     // const updatedPl = await playlistController.read({ _id: readPl._id })
     //     }
@@ -78,7 +74,6 @@ async function renamePlaylist(data) {
     try {
         let rename1 = await playlistController.updatePlaylist({ _id: data?._id }, { name: data?.newName })
         const newName1 = await playlistController.read({ _id: data._id })
-        console.log("newName1", newName1);
         return newName1
     } catch (error) {
         console.log(error || "error");
