@@ -26,13 +26,10 @@ router.post("/register", async (req ,res) => {
 
 
 router.post("/login", async (req ,res) => {
-    console.log(req);
-    // console.log(req.headers.authorization);
-
+    
     try {
         const result = await userLogic.login(req.body);
         console.log("result?.user?._id",result?.user?._id)
-        // const id=result[1]?.user?._id
         res.status(200).send(result)  
     } catch (error) {
         console.log("error", error);

@@ -14,7 +14,6 @@ const options = {
 
 
 async function search(data) {
-    console.log( "line 17",0000000000000000000000000000000000,process.env);
     if (!data) throw { code: 400, msg: "func search missing data" };
     const result = await axios.get(
         encodeURI( `https://simple-youtube-search.p.rapidapi.com/search?query=?${data}&safesearch=false`),
