@@ -5,7 +5,7 @@ const playlistLogic = require('../BL/playlistLogic')
 
 
 router.post("/addToPlaylist" , async (req, res) => {
-    console.log("addtoplaylist req", req.body)
+    // console.log("addtoplaylist req", req.body)
     try {
         const result = await playlistLogic.addToPlaylist(req.body);
         console.log(result)
@@ -73,7 +73,7 @@ router.post("/songs", async (req, res) => {
 })
 
 router.post("/del", async (req, res) => {
-    console.log("req.body",req.body)
+    // console.log("req.body",req.body)
     try {
         console.log("enterd the try loop in pl route del");
         const result = await playlistLogic.delSongFromPl(req.body)
@@ -124,10 +124,9 @@ router.post("/rename", async (req, res) => {
 })
 
 router.post("/showpl", async (req, res) => {
-    console.log("banana", req.body);
+    // console.log("banana", req.body);
     try {
         const result = await playlistLogic.showUsersPlaylists(req.body.id)
-        console.log("result", result);
         res.status(200).send(result)
     } catch (error) {
         console.log(error || "error");

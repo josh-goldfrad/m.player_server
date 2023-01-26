@@ -6,7 +6,6 @@ const songModel = require("../models/song")
 // create
 async function addSongToDb(data) {
     let res = await songModel.create(data);
-    // console.log(res._id);
     return res
 
 }
@@ -33,7 +32,6 @@ async function addSongToDb(data) {
 
 async function read(data){
     let res = await songModel.findOne({"_id":data})
-    // console.log(res);
     return res; 
 }
 
@@ -46,7 +44,6 @@ async function readSong(filter) {
     let res = filter
         ? await songModel.findOne({ "url": filter })
         : false
-    // console.log(res);
     //if it dosent exist then it returns null
     return res
 }
@@ -80,7 +77,6 @@ async function deleteSong(filter) {
     let res = filter
         ? await songModel.findByIdAndDelete(filter._id)
         : await songModel.findByIdAndDelete({})
-        console.log(res);
     return res
 
 }
@@ -88,27 +84,7 @@ async function deleteSong(filter) {
 module.exports = { addSongToDb, readSong,deleteSong,read }
 
 
-// readSong({uploadedAt:"1 month ago",thumbnail:{url:"https://i.ytimg.com/vi/qFedMfsTIoc/hqdefault.jpg?sqp=-oaymwEjCOADEI4CSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLDayT4fYQQHCcCStNOA-rsGpkrzxQ",height:270,id:"qFedMfsTIoc",width:480},views:646987,title:"Megadeth - Live at Graspop Metal Meeting 2022 (Pro-Shot) [60fps]",url:"https://www.youtube.com/watch?v=qFedMfsTIoc",duration_formatted:"1:03:41",channel:{name:"Megadeth of Destruction",icon:"https://yt3.ggpht.com/JI6QzpXyYTqhv9tqDzfAt-7Fmyvad5NSam_Wzgo9y-JJzB1pHwcm8vtHYqe0_bB0Atu3UP3Jfw=s0-c-k-c0x00ffffff-no-rj",id:"UC_5CztTUpKRLSjtHlu4rZuw"},__v:0})
 
-// readSong({
-//     thumbnail: {
-//       url: "https://i.ytimg.com/vi/xzOuDllFhwg/hqdefault.jpg?sqp=-oaymwEjCOADEI4CSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBPFD6_vlBkPgYQtj8AITJ9aQZysA",
-//       height: 270, 
-//       id: "xzOuDllFhwg",
-//       width: 480
-//     },
-//     channel: {
-//       name: "Israeli Classics קלאסיקה ישראלית",
-//       icon: "https://yt3.ggpht.com/ytc/AMLnZu9eEz3A_x-vkNjyT1DFXgsO7fdowx4in68jXbIzZw=s0-c-k-c0x00ffffff-no-rj",
-//       id: "'UCD1FZBhJFeEVt2G8f7dPEKg'"
-//     },
-//     uploadedAt: "10 years ago",
-//     views: 6717,
-//     title: "יהונתן גפן סופו של יהושע הפרוע",
-//     url: "https://www.youtube.com/watch?v=XnCry-YVDiw",
-//     duration_formatted: "2:53",
-//     __v: 0
-//   })
 
 
 

@@ -7,7 +7,7 @@ const songLogic = require('../BL/songLogic')
 router.post("/", async (req, res) => {
       try {
         const result = await songLogic.addSong(req.body);
-        console.log(result, "added to DB");
+        // console.log(result, "added to DB");
         res.status(200).send(result)
     } catch (error) {
         console.log("error", error);

@@ -9,11 +9,9 @@ async function createNewPlaylist(data){
 
 //read
 async function read (filter){
-    console.log("filter",filter);
     let res =filter
     ?await playlistModel.findOne({"_id":filter})
     :false;
-    // console.log( "pl read",res);
     return res
 }
 
@@ -36,7 +34,6 @@ async function readMany(filter){
 //update
 async function updatePlaylist(filter,data){
     let res= await playlistModel.findOneAndUpdate(filter,data)
-    console.log("updatePl",res);
     return res
 }
 //need to do a read request and give it songs for the update to work 
