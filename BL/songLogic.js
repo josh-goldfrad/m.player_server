@@ -3,18 +3,18 @@ require("dotenv").config()
 songController = require("../DL/controllers/songController")
 
 async function addSong(data) {
-    console.log(data);
+    // console.log(data);
     const { uploadedAt, thumbnail, title, url, duration_formatted, channel } = data
     try {
 
         if (!uploadedAt || !thumbnail || !title || !url || !duration_formatted || !channel) throw { "songLogic": "songLogic", code: 400, message: "error with input from front " }
         const checkSong = await songController.readSong(url)
         if (checkSong) {
-            console.log("checksong",checkSong?._id);
+            // console.log("checksong",checkSong?._id);
             return checkSong?._id;
         } else {
             const newSong = await songController.addSongToDb(data)
-            console.log("newsong",newSong?._id);
+            // console.log("newsong",newSong?._id);
 
             return newSong?._id
         }

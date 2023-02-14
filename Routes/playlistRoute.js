@@ -23,7 +23,7 @@ router.post("/addToPlaylist", authJWT, async (req, res) => {
 router.post("/createNewPlaylist", authJWT, async (req, res) => {
     try {
         const result = await playlistLogic.createNewPlaylist(req.body);
-        console.log("playlist req", req.body);
+        // console.log("playlist req", req.body);
         res.status(200).send(result)
     } catch (error) {
         console.log("error", error);
@@ -40,7 +40,7 @@ router.post("/createNewPlaylist", authJWT, async (req, res) => {
 router.get("/", authJWT, async (req, res) => {
     try {
         const result = await playlistLogic.read(req.body);
-        console.log("playlist read", req.body.mongoId);
+        // console.log("playlist read", req.body.mongoId);
         res.status(200).send(result)
     } catch (error) {
         console.log(error || "error");
@@ -90,7 +90,7 @@ router.post("/del", authJWT, async (req, res) => {
 router.post("/delete", authJWT, async (req, res) => {
     try {
         const result = await playlistLogic.deletePlaylist(req.body);
-        console.log("playlist delete 3765", result);
+        // console.log("playlist delete 3765", result);
         res.status(200).send(result)
 
     } catch (error) {
@@ -107,7 +107,7 @@ router.post("/delete", authJWT, async (req, res) => {
 router.post("/rename", authJWT, async (req, res) => {
     try {
         const result = await playlistLogic.renamePlaylist(req.body)
-        console.log("result", result);
+        // console.log("result", result);
         res.status(200).send(result)
     } catch (error) {
         console.log(error || "error");
@@ -122,7 +122,7 @@ router.post("/rename", authJWT, async (req, res) => {
 
 
 router.post("/showpl", authJWT, async (req, res) => {
-    console.log("banana", req);
+    // console.log("banana", req);
     try {
         const result = await playlistLogic.showUsersPlaylists(req.body.id)
         res.status(200).send(result)

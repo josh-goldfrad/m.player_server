@@ -7,9 +7,9 @@ const songLogic = require("./songLogic")
 async function addToPlaylist(data) {
 
     const theSongId = await songLogic.addSong(data.song)
-    console.log("data.playlist", data.playlist);
+    // console.log("data.playlist", data.playlist);
     const readPl = await playlistController.read(data.playlist)
-    console.log("readPl", readPl);
+    // console.log("readPl", readPl);
     //  check if it includes this song already but it dosent return whole pl
     let checkForDuplicate = readPl?.songs?.find((v) => (String(v) == String(theSongId)))
     if (checkForDuplicate) {
@@ -18,7 +18,7 @@ async function addToPlaylist(data) {
     } else {
         console.log("not in pl");
 
-        console.log("is array", Array.isArray(readPl.songs));
+        // console.log("is array", Array.isArray(readPl.songs));
         return await playlistController.updatePlaylist({ _id: data.playlist._id }, { songs: [...readPl.songs, theSongId] })
 
     }
@@ -128,7 +128,7 @@ async function showUsersPlaylists(userId) {
 async function PlreadSongsFromPl(data) {
     try {
         const songArr = await songLogic.readSongFromPL(data)
-        console.log(songArr);
+        // console.log(songArr);
         return songArr
     } catch (error) {
         console.log(error || "error");
@@ -167,7 +167,7 @@ async function createNewPlaylist(data) {
 // },user:"630b65e74e510317b8d177bd"})
 
 async function deletePlaylist(data) {
-    console.log("papaya");
+    // console.log("papaya");
     try {
         const del = await playlistController.deleteIt(data._id)
         return del

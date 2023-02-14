@@ -6,9 +6,9 @@ const authJWT = async (req, res, next) => {
     if (authHeader) {
         const token = authHeader.split(" ")[1];
         const verifyToken = validateJToken(token, process.env.JWT_SECRET);
-        console.log(11, verifyToken);
+        // console.log(11, verifyToken);
         req.user = verifyToken._id
-        console.log(12);
+        // console.log(12);
         // req.user = await readOne({ _id: verifyToken._id });    
         next()
     } else {
