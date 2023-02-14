@@ -10,7 +10,7 @@ async  function addNewUser(data){
 
 async function login(data){
     let res= await userModel.findOne(data)
-    console.log(res,"login function");
+    // console.log("login function:",res);
     return res
 }
 
@@ -20,7 +20,7 @@ async function readUser (filter){
     let res= filter 
     ?await userModel.findOne(filter).select("+password")
     :  false;
-// console.log(res);
+    console.log(res);
     return res
 }
 // readUser({name:"shachar",password:"012012"})

@@ -12,11 +12,13 @@ async function read (filter){
     let res =filter
     ?await playlistModel.findOne({"_id":filter})
     :false;
+    // console.log("res in read plcontroller",res);
     return res
+
 }
 
-// read({playlist:{_id:"62eb8da5d3930d18b4cc6778"}})
-// read({_id:"630b65e74e510317b8d177bd"})
+// read({"_id":"63aac8294dd55cea1d30b307"})
+
 
 
 // readmany

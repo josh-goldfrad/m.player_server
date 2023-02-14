@@ -1,14 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const { authJWT } = require("../auth/auth");
+const playlistLogic = require('../BL/playlistLogic');
 
-const playlistLogic = require('../BL/playlistLogic')
 
-
-router.post("/addToPlaylist" , async (req, res) => {
-    // console.log("addtoplaylist req", req.body)
+router.post("/addToPlaylist", authJWT, async (req, res) => {
     try {
         const result = await playlistLogic.addToPlaylist(req.body);
-        console.log(result)
         res.status(200).send(result)
     } catch (error) {
         console.log("error", error);
@@ -20,9 +18,9 @@ router.post("/addToPlaylist" , async (req, res) => {
         }
 
     }
-})
+});
 
-router.post("/createNewPlaylist", async (req, res) => {
+router.post("/createNewPlaylist", authJWT, async (req, res) => {
     try {
         const result = await playlistLogic.createNewPlaylist(req.body);
         console.log("playlist req", req.body);
@@ -39,7 +37,7 @@ router.post("/createNewPlaylist", async (req, res) => {
     }
 })
 
-router.get("/", async (req, res) => {
+router.get("/", authJWT, async (req, res) => {
     try {
         const result = await playlistLogic.read(req.body);
         console.log("playlist read", req.body.mongoId);
@@ -56,7 +54,7 @@ router.get("/", async (req, res) => {
     }
 })
 
-router.post("/songs", async (req, res) => {
+router.post("/songs", authJWT, async (req, res) => {
     try {
         const result = await playlistLogic.PlreadSongsFromPl(req.body);
         // console.log("songs from  pl",result);
@@ -72,8 +70,7 @@ router.post("/songs", async (req, res) => {
     }
 })
 
-router.post("/del", async (req, res) => {
-    // console.log("req.body",req.body)
+router.post("/del", authJWT, async (req, res) => {
     try {
         console.log("enterd the try loop in pl route del");
         const result = await playlistLogic.delSongFromPl(req.body)
@@ -90,10 +87,10 @@ router.post("/del", async (req, res) => {
     }
 })
 
-router.post("/delete", async (req, res) => {
+router.post("/delete", authJWT, async (req, res) => {
     try {
         const result = await playlistLogic.deletePlaylist(req.body);
-        console.log("playlist delete 3765", req.body);
+        console.log("playlist delete 3765", result);
         res.status(200).send(result)
 
     } catch (error) {
@@ -107,10 +104,10 @@ router.post("/delete", async (req, res) => {
     }
 })
 
-router.post("/rename", async (req, res) => {
+router.post("/rename", authJWT, async (req, res) => {
     try {
         const result = await playlistLogic.renamePlaylist(req.body)
-        console.log(result);
+        console.log("result", result);
         res.status(200).send(result)
     } catch (error) {
         console.log(error || "error");
@@ -123,8 +120,9 @@ router.post("/rename", async (req, res) => {
     }
 })
 
-router.post("/showpl", async (req, res) => {
-    // console.log("banana", req.body);
+
+router.post("/showpl", authJWT, async (req, res) => {
+    console.log("banana", req);
     try {
         const result = await playlistLogic.showUsersPlaylists(req.body.id)
         res.status(200).send(result)

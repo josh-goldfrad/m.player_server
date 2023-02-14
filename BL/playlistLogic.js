@@ -7,7 +7,9 @@ const songLogic = require("./songLogic")
 async function addToPlaylist(data) {
 
     const theSongId = await songLogic.addSong(data.song)
+    console.log("data.playlist", data.playlist);
     const readPl = await playlistController.read(data.playlist)
+    console.log("readPl", readPl);
     //  check if it includes this song already but it dosent return whole pl
     let checkForDuplicate = readPl?.songs?.find((v) => (String(v) == String(theSongId)))
     if (checkForDuplicate) {
@@ -15,7 +17,10 @@ async function addToPlaylist(data) {
         return false
     } else {
         console.log("not in pl");
-        await playlistController.updatePlaylist({ _id: data.playlist._id }, { songs: [...readPl.songs, theSongId] })
+
+        console.log("is array", Array.isArray(readPl.songs));
+        return await playlistController.updatePlaylist({ _id: data.playlist._id }, { songs: [...readPl.songs, theSongId] })
+
     }
     // const updatedPl = await playlistController.read({ _id: readPl._id })
     //     }
@@ -45,13 +50,13 @@ async function addToPlaylist(data) {
 //     }, playlist: { _id: "62e78850971b9d7772b704c1" }
 // })
 
-async function delSongFromPl(objForDel) {
-    let pineapple = objForDel?.songs?.map(elem => console.log("apple", elem?._id));
-    let mango = objForDel?.songs?.filter(elem => elem?._id !== objForDel?.songToDel?._id)
+async function delSongFromPl(data) {
+    let updatedPlPostDeletion = data?.songs?.filter(elem => elem?._id !== data?.songToDel?._id)
     //add a delete song funciton- done 19/12
-    const updatedPl = await playlistController.updatePlaylist({ _id: objForDel?._id }, { songs: [...mango] })
-    console.log(updatedPl);
-    return updatedPl
+    await playlistController.updatePlaylist({ _id: data?._id }, { songs: [...updatedPlPostDeletion] })
+    const superUpdatedPl = await playlistController.read(data._id)
+    const newPl = await songLogic.readSongFromPL(superUpdatedPl);
+    return newPl
 }
 // delSongFromPl({
 //     _id: {
@@ -72,7 +77,7 @@ async function delSongFromPl(objForDel) {
 
 async function renamePlaylist(data) {
     try {
-        let rename1 = await playlistController.updatePlaylist({ _id: data?._id }, { name: data?.newName })
+        await playlistController.updatePlaylist({ _id: data?._id }, { name: data?.newName })
         const newName1 = await playlistController.read({ _id: data._id })
         return newName1
     } catch (error) {

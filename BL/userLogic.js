@@ -25,13 +25,14 @@ async function login(data) {
         if (password !== user.password) throw { code: 406, message: "user or password incorrect" }
         const loggedIn = await userController.login(data)
         let token = await createJToken(user?._id)
-        info = { playlists: playlists, user: loggedIn
+        info = {
+            playlists: playlists, user: loggedIn
             , token
-         }
+        }
         return info
     } catch (error) {
         console.log("password or username are incorrect")
-        return false
+        return error
     }
 }
 

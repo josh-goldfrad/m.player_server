@@ -10,7 +10,7 @@ router.post("/register", async (req ,res) => {
         const checkExist= await userLogic.checkExist(req.body);
         // now if checkExist is good then do next line
         const result = await userLogic.createUser(req.body);
-        console.log("user req", req.body);
+        // console.log("user req", req.body);
         res.status(200).send(result)
     } catch (error) {
         console.log("error", error);
@@ -26,10 +26,9 @@ router.post("/register", async (req ,res) => {
 
 
 router.post("/login", async (req ,res) => {
-    
     try {
         const result = await userLogic.login(req.body);
-        console.log("result?.user?._id",result?.user?._id)
+        // console.log("result?.user?._id",result?.user?._id)
         res.status(200).send(result)  
     } catch (error) {
         console.log("error", error);
